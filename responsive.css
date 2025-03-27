@@ -1,0 +1,421 @@
+/* File CSS responsif yang ditingkatkan untuk pengalaman mobile yang lebih baik */
+
+/* Aturan global responsif */
+* {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    /* Menghilangkan highlight saat tap di mobile */
+}
+
+html,
+body {
+    overscroll-behavior: none;
+    /* Mencegah pull-to-refresh di mobile */
+    touch-action: manipulation;
+    /* Meningkatkan perilaku sentuh */
+}
+
+/* Kontrol viewport yang lebih baik untuk mobile */
+@viewport {
+    width: device-width;
+    zoom: 1.0;
+}
+
+/* Ukuran font responsif menggunakan clamp */
+.responsive-text {
+    font-size: clamp(1rem, 4vw, 2rem);
+}
+
+.responsive-title {
+    font-size: clamp(1.5rem, 6vw, 3rem);
+}
+
+/* Fix untuk masalah 100vh pada browser mobile (terutama iOS Safari) */
+@supports (-webkit-touch-callout: none) {
+
+    .book-container,
+    body,
+    .loading-overlay,
+    .night {
+        height: -webkit-fill-available;
+    }
+}
+
+/* Perbaikan mobile umum untuk semua halaman */
+@media (max-width: 768px) {
+
+    /* Target sentuh yang lebih besar untuk tombol */
+    .nav-btn,
+    .next-btn,
+    .back-btn,
+    .music-control {
+        min-width: 44px;
+        min-height: 44px;
+        padding: 12px 25px;
+    }
+
+    /* Meningkatkan visibilitas tombol */
+    .music-control {
+        width: 50px;
+        height: 50px;
+        bottom: 25px;
+        right: 25px;
+    }
+
+    .back-btn {
+        padding: 12px 24px;
+        font-size: 1.1rem;
+    }
+
+    /* Memastikan elemen tidak terlalu dekat dengan tepi layar */
+    .book-container,
+    .neon-container,
+    .flowers {
+        width: 95%;
+        padding: 10px;
+    }
+}
+
+/* Perbaikan animasi bunga (index.html) */
+@media (max-width: 768px) {
+    .flower {
+        transform: scale(0.7);
+    }
+
+    .flower--1 .flower__line {
+        height: 60vmin;
+    }
+
+    .flower--2 .flower__line {
+        height: 50vmin;
+    }
+
+    .flower--3 .flower__line {
+        height: 45vmin;
+    }
+
+    /* Mengurangi kompleksitas animasi untuk performa lebih baik */
+    .flower__light {
+        animation-duration: 6s;
+        /* Animasi lebih lambat untuk performa lebih baik */
+    }
+
+    /* Menyederhanakan beberapa animasi kompleks di mobile */
+    .long-g {
+        transform: scale(0.8);
+    }
+}
+
+/* Perangkat mobile yang lebih kecil */
+@media (max-width: 480px) {
+    .flower {
+        transform: scale(0.5);
+        /* Lebih kecil lagi */
+    }
+
+    /* Mengurangi jumlah elemen dekoratif untuk meningkatkan performa */
+    .flower__light:nth-child(n+5),
+    .long-g:nth-child(n+5) {
+        display: none;
+    }
+}
+
+/* Perbaikan halaman buku (love.html) */
+@media (max-width: 768px) {
+    .book-container {
+        width: 100%;
+        height: 85vh;
+        max-width: 100%;
+    }
+
+    /* Membuat pembalikan halaman lebih mudah di mobile */
+    .page {
+        padding: 20px 15px;
+    }
+
+    .book-title {
+        font-size: clamp(1.8rem, 7vw, 3rem);
+        margin-bottom: 15px;
+    }
+
+    .book-subtitle {
+        font-size: clamp(1rem, 4vw, 1.2rem);
+        margin-bottom: 30px;
+    }
+
+    .message {
+        font-size: clamp(1.2rem, 5vw, 2rem);
+        padding: 0 5px;
+        margin-bottom: 15px;
+    }
+
+    .photo-container {
+        width: 90%;
+        height: 50%;
+        margin: 10px 0;
+        border-width: 5px;
+    }
+
+    /* Navigasi tetap yang tidak menutupi konten */
+    .navigation {
+        position: fixed;
+        bottom: 15px;
+        background-color: rgba(255, 255, 255, 0.8);
+        padding: 8px;
+        border-radius: 30px;
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+    }
+
+    .nav-btn {
+        padding: 8px 20px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Penyesuaian untuk mobile sangat kecil */
+@media (max-width: 400px) {
+    .book-container {
+        height: 80vh;
+    }
+
+    .photo-container {
+        width: 95%;
+        height: 45%;
+    }
+
+    .message {
+        margin-bottom: 10px;
+    }
+
+    .page {
+        padding: 15px 10px;
+    }
+
+    .page-number {
+        font-size: 0.7rem;
+    }
+}
+
+/* Penyesuaian mode landscape */
+@media (max-height: 500px) and (orientation: landscape) {
+    .book-container {
+        height: 90vh;
+    }
+
+    .photo-container {
+        height: 40%;
+        width: 60%;
+    }
+
+    .navigation {
+        bottom: 5px;
+    }
+
+    /* Menyesuaikan tata letak buku untuk landscape */
+    .page {
+        padding: 10px;
+    }
+
+    .message {
+        font-size: clamp(1rem, 3vw, 1.5rem);
+        margin-bottom: 5px;
+    }
+
+    .book-title {
+        font-size: clamp(1.5rem, 5vw, 2.5rem);
+        margin-bottom: 10px;
+    }
+
+    .book-subtitle {
+        margin-bottom: 15px;
+    }
+}
+
+/* Perbaikan halaman intro */
+@media (max-width: 480px) {
+    .neon-box {
+        width: 320px;
+        height: 170px;
+    }
+
+    .neon-text {
+        font-size: 2rem;
+    }
+
+    .next-btn {
+        margin-top: 30px;
+        padding: 10px 25px;
+    }
+
+    /* Mengurangi animasi hati untuk performa lebih baik */
+    .heart {
+        animation-duration: 7s;
+    }
+}
+
+/* Optimasi perangkat sentuh */
+@media (hover: none) {
+
+    /* Area sentuh yang lebih besar */
+    .nav-btn,
+    .next-btn,
+    .back-btn,
+    .music-control {
+        padding-top: 12px;
+        padding-bottom: 12px;
+    }
+
+    /* Menambahkan status aktif yang terlihat untuk umpan balik sentuh */
+    .nav-btn:active,
+    .next-btn:active,
+    .back-btn:active,
+    .music-control:active {
+        transform: scale(0.95);
+        opacity: 0.85;
+    }
+
+    /* Meningkatkan sampul buku untuk sentuh */
+    .cover {
+        position: relative;
+    }
+
+    .cover::after {
+        content: 'Ketuk untuk membuka';
+        position: absolute;
+        bottom: 15px;
+        font-family: 'Dancing Script', cursive;
+        color: white;
+        font-size: 1.2rem;
+        animation: pulse 2s infinite;
+    }
+
+    /* Indikator sentuh yang lebih baik */
+    @keyframes pulse {
+
+        0%,
+        100% {
+            opacity: 0.5;
+        }
+
+        50% {
+            opacity: 1;
+        }
+    }
+}
+
+/* Meningkatkan indikator loading untuk UX yang lebih baik */
+.loading-overlay {
+    background-color: rgba(248, 241, 245, 0.9);
+}
+
+.loading-heart {
+    width: 60px;
+    height: 60px;
+}
+
+/* Efek bayangan halaman */
+.page-shadow-overlay {
+    pointer-events: none;
+    z-index: 10;
+}
+
+.page-curl-shadow,
+.page-curl-shadow-reverse {
+    pointer-events: none;
+    z-index: 5;
+}
+
+/* Kelas untuk efek tekstur kertas */
+.paper-texture {
+    pointer-events: none;
+}
+
+/* Meningkatkan elemen kecil hati untuk mobile */
+.small-heart {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    opacity: 0;
+    z-index: 5;
+    pointer-events: none;
+}
+
+@media (max-width: 480px) {
+    .small-heart {
+        width: 15px;
+        height: 15px;
+    }
+}
+
+/* Memperbaiki masalah z-index dan penanganan sentuh */
+.book {
+    z-index: 10;
+}
+
+.page {
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+/* Peningkatan performa animasi */
+@media (max-width: 768px) {
+
+    .flower,
+    .flower__light,
+    .long-g,
+    .grow-ans,
+    .flower__grass {
+        will-change: transform;
+    }
+}
+
+/* Perbaikan untuk container foto */
+.photo-container {
+    width: 80%;
+    height: 55%;
+    margin: 15px 0;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    background-color: #f8f8f8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 10px solid white;
+    position: relative;
+}
+
+.photo {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* Perbaikan mobile untuk container foto */
+@media (max-width: 768px) {
+    .photo-container {
+        width: 85%;
+        height: 45%;
+        border-width: 5px;
+        margin: 10px 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .photo-container {
+        width: 90%;
+        height: 40%;
+    }
+}
+
+/* Perbaikan mode landscape */
+@media (max-height: 500px) and (orientation: landscape) {
+    .photo-container {
+        width: 60%;
+        height: 50%;
+    }
+}
